@@ -1,0 +1,143 @@
+@use "sass:color"
+
+$color-primary: #9CD7AC
+$color-on-primary: black
+$color-bg: #0d1121
+$color-elem: #25314d
+$color-fg: white
+$color-fg-dim: #a2b7d7
+$color-error: #53292f
+
+$font-size: 14px
+
+$max-bar-width: 640px
+
+@font-face
+  font-family: DINish
+  font-weight: normal
+  font-style: normal
+  src: url(/font/DINish-Regular.ttf) format(truetype)
+
+@font-face
+  font-family: DINish
+  font-weight: bold
+  font-style: normal
+  src: url(/font/DINish-Bold.ttf) format(truetype)
+
+$font-family: DINish
+
+body
+  margin: 0
+  background-color: $color-bg
+  color: $color-fg
+  font-family: $font-family
+  font-size: $font-size
+
+#ROOT
+  width: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
+
+form
+  width: 100%
+  box-sizing: border-box
+  display: flex
+  flex-direction: row
+  align-items: stretch
+
+  input
+    padding: 9px 12px
+
+    &[type="text"]
+      padding-left: 16px
+      flex: 1
+      background-color: $color-elem
+      color: $color-fg
+      font-family: $font-family
+      font-size: $font-size
+      border: none
+      outline: none
+      &::placeholder
+        color: $color-fg-dim
+    
+    &[type="submit"]
+      padding-right: 16px
+      font-weight: bold
+      text-transform: uppercase
+      background-color: $color-primary
+      color: $color-on-primary
+      border: none
+      cursor: pointer
+
+  @media (min-width: $max-bar-width)
+    width: $max-bar-width
+    padding: 12px
+    input
+      &[type="text"]
+        border-top-left-radius: 30px
+        border-bottom-left-radius: 30px
+      &[type="submit"]
+        border-top-right-radius: 30px
+        border-bottom-right-radius: 30px
+
+#error
+  font-size: 12px
+  padding: 6px 8px
+  background-color: $color-error
+  
+  @media (max-width: $max-bar-width)
+    align-self: flex-start
+    margin: 12px
+
+
+#deduction-tree
+  margin-left: 90px
+  padding: 12px
+  margin-top: 36px
+  white-space: nowrap
+
+  .deduction-container
+    display: flex
+    flex-direction: row
+    align-items: flex-end
+
+    > .name
+      width: 70px
+      margin-right: 10px
+      margin-left: -80px
+      margin-bottom: $font-size + 5px
+      text-align: right
+      color: $color-fg-dim
+  
+    > .deduction
+      display: flex
+      flex-direction: column
+      align-items: stretch
+
+      > .top
+        padding-bottom: 10px
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+
+      > .top.var
+        display: inline
+        text-align: center
+
+      > .bottom
+        padding: 10px
+        padding-bottom: 0
+        border-top: 1px $color-fg solid
+        text-align: center
+
+  .deduction-container:not(:first-child)
+    margin-left: 140px
+
+  .type-error
+    width: $font-size
+    height: $font-size
+    border: 3px lighten($color-error, 20%) dashed
+    background-color: $color-error
+    display: inline-block
+    vertical-align: middle
