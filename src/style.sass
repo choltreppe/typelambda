@@ -90,6 +90,39 @@ form
     align-self: flex-start
     margin: 12px
 
+#info
+  margin: 12px
+  margin-top: 50px
+  padding: 16px 20px
+  padding-left: 70px
+  position: relative
+  background-color: $color-elem
+  border-radius: 16px
+  overflow: hidden
+
+  &::before
+    content: "i"
+    display: block
+    position: absolute
+    @each $side in [top, bottom, left]
+      #{$side}: 0
+    width: 50px
+    padding-top: 14px
+    background-color: #90c2ee
+    color: black
+    font-family: 'Courier New', monospace
+    font-size: 26px
+    font-weight: bold
+    text-align: center
+    vertical-align: middle
+
+  ul
+    margin-bottom: 0
+    padding-left: 12px
+    li
+      margin-top: 10px
+      list-style: none
+
 
 #deduction-tree
   margin-left: 90px
