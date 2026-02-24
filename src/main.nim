@@ -29,17 +29,18 @@ setRenderer do(route: RouterData) -> VNode:
         e.preventDefault()
         window.location.hash = $n.dom[0].InputElement.value
 
-    if deduction.isOk():
-      render(deduction.vResultPrivate)
-    
-    elif (let e = deduction.error; e.msg != ""):
-      tdiv(id = "error"): text e.msg
-    
-    else:
-      tdiv(id = "info"):
-        text "some example expressions, showing whats supported:"
-        ul:
-          li: text r"λx: Bool → Nat. x true"
-          li: text r"\x: Bool -> Nat. x true"
-          li: text r"(\x: Bool. if x then 0 else 42) false"
-          li: text r"(\f: Int -> Int. \x: Int. (f x) + 2) (\x: Int. x * 2) 4"
+    tdiv(id = "content"):
+      if deduction.isOk():
+        render(deduction.vResultPrivate)
+      
+      elif (let e = deduction.error; e.msg != ""):
+        tdiv(id = "error"): text e.msg
+      
+      else:
+        tdiv(id = "info"):
+          text "some example expressions, showing whats supported:"
+          ul:
+            li: text r"λx: Bool → Nat. x true"
+            li: text r"\x: Bool -> Nat. x true"
+            li: text r"(\x: Bool. if x then 0 else 42) false"
+            li: text r"(\f: Int -> Int. \x: Int. (f x) + 2) (\x: Int. x * 2) 4"
